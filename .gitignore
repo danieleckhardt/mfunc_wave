@@ -14,6 +14,7 @@ output/errors/Example-1/*
 output/solution/*
 output/ref_solution/*
 output/matrices/*
+tools/output
 .venv
 
 nlmaves/build
