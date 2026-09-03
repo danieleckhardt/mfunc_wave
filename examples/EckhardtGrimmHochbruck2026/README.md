@@ -16,9 +16,9 @@ To generate the data for spatial and temporal convergence plots, build the targe
 The data can also be generated separately by 
 
 ```bash
-    cd chebyshev_arnoldi/
+    cd matrix_functions_ellipse/
     make 
-    ./chebyshev_arnoldi
+    ./matrix_functions_ellipse
 ```
 or  
 ```bash
@@ -34,5 +34,5 @@ or
 ```
 
 ## Output
-The result can be found in the folder `output/errors/Example101` and `output/errors/Example201` and `output/errors/Example301`. There are three different subfolders `cheb` and `poly_krylov` and `rat_krylov`, in which the data for the plots are stored, respectively. There are Python scripts for the visualization, which are located in `tools/`. 
+The result can be found in the folder `output/errors/Example201` and `output/errors/Example202` and `output/errors/Example301`. There are three different subfolders `cheb` and `poly_krylov` and `leja`, in which the data for the plots are stored, respectively. There are Python scripts for the visualization, which are located in `tools/`. 
 
