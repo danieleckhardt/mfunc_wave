@@ -11,7 +11,7 @@ from typing import List
 # USER SETTINGS
 # =============================================================================
 
-EXAMPLE: int = 202  # 101, 201, 202, 301
+EXAMPLE: int = 201  # 101, 201, 202, 301
 
 BETAS: List[float] = [0.01, 0.1, 0.001]  # see the corresponding ini file
 # 101: [0.4, 0.03, 0.01]
@@ -27,7 +27,11 @@ METHOD: str = "cheb"
 
 # For example 202: the ellipse computations to compare.
 # Use ["ritz"] for examples 101/201/301 (no suffix in the filename there).
-ELLIPSE_METHODS: List[str] = ["ritz", "enclosure"]
+# Example 201, 301:
+ELLIPSE_METHODS: List[str] = ["ritz"]
+
+# Example 202:
+# ELLIPSE_METHODS: List[str] = ["ritz", "enclosure"]
 
 # =============================================================================
 # DATA MODEL
@@ -63,7 +67,8 @@ class Config:
         if example not in config_map:
             raise ValueError(f"Unknown example {example}")
 
-        config_path = Path(config_map[example])
+        PROJECT_ROOT = Path(__file__).resolve().parent.parent
+        config_path = PROJECT_ROOT / config_map[example]
 
         if not config_path.exists():
             raise FileNotFoundError(f"Missing config file: {config_path}")
@@ -688,15 +693,16 @@ def _plot_ellipse_comparison(records: List[EllipseRecord],
 
 
 def main():
+    PROJECT_ROOT = Path(__file__).resolve().parent.parent
     config = Config(EXAMPLE)
     example_id = config.get("Calculation_Mode", "example", str, "10")
-    base_folder = Path(f"output/errors/Example{example_id}")
-    output_dir  = Path(f"output/errors/Example{EXAMPLE}/tables_figures")
+    base_folder = PROJECT_ROOT / f"output/errors/Example{example_id}"
+    output_dir  = PROJECT_ROOT / f"output/errors/Example{EXAMPLE}/tables_figures"
     output_path = output_dir / OUTPUT_FILENAME
     INFO        = config.get("Output", "info_ellipse", str)
     info        = (INFO == "true")
     is_202      = (EXAMPLE == 202)
-    ell_loop    = ELLIPSE_METHODS if is_202 else [""]
+    ell_loop = ELLIPSE_METHODS
     all_records: List[EllipseRecord] = []
 
     for ell_m in ell_loop:

@@ -6,6 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplot2tikz import save as tikz_save
 
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 # =============================================================================
 # USER SETTINGS
@@ -19,9 +20,9 @@ methods = ["cheb", "leja", "poly_krylov"]
 # so the entry is ignored there anyway.
 ellipse_methods = ["ritz"]
 # ["ritz", "enclosure"]
-betas = [0.01, 0.1, 1]   # Betalist, see the corresponding ini file
-# 201: [0.01, 0.001]
-# 202: [0.01, 0.1, 0.001]   (same problem, new ellipse computation)
+betas = [1, 0.1, 0.01]   # Betalist, see the corresponding ini file
+# 201: [0.01, 0.1, 0.001]
+# 202: [0.01, 0.001]   (same problem, new ellipse computation)
 # 301: [1, 0.1, 0.01]
 
 # X-range of the "error vs. polynomial degree" plot.
@@ -50,7 +51,8 @@ def load_config(example: int) -> configparser.ConfigParser:
     if example not in config_map:
         raise ValueError(f"Unknown example {example}")
 
-    cfg.read(config_map[example])
+    script_dir = Path(__file__).parent.parent  # tools/ -> mfunc_wave/
+    cfg.read(PROJECT_ROOT / config_map[example])
     return cfg
 
 
@@ -339,7 +341,7 @@ def main():
     cfg = load_config(example)
 
     ex = gets(cfg, 'Calculation_Mode', 'example', str(example))
-    base_folder = Path(f"output/errors/Example{ex}")
+    base_folder = PROJECT_ROOT / f"output/errors/Example{ex}"
     output_dir = base_folder / "tables_figures"
     output_dir.mkdir(parents=True, exist_ok=True)
 
