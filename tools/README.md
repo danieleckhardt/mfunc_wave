@@ -4,8 +4,7 @@ Python files for creating tables and charts from data calculated by `matrix_func
 Run `matrixfunction_error_table.py` to create the error plot.
 Run `ellipse_plot_and_table.py` to generate ellipse tables and PNG visualizations.
 
-For docker use
-
+When using Docker: 
 ```
 sudo /opt/venv/bin/python3 ellipse_plot_and_tabel.py
 ```
