@@ -1,4 +1,4 @@
-# Example: Plots from EckhardtHochbruckVerfuerth24
+# Example: Plots from EckhardtGrimmHochbruck26
 
 This is the example, presenting in  from EckhardtGrimmHochbruck26. 
 
