@@ -9,7 +9,7 @@
 
 Enter the repository and create a build folder
 ```
-cd nlmaves/
+cd mfunc_wave/
 mkdir build
 cd build/
 ```
@@ -40,7 +40,7 @@ docker build -t dealii .devcontainer/
 ```
 Start a container
 ```
-docker run -i -t -v .:/home/dealii/nlmaves dealii
+docker run -i -t -v .:/home/dealii/mfunc_wave dealii
 ```
 Continue the compilation as described above.  ( Does not work on Network Boot devices of KIT! )
 
